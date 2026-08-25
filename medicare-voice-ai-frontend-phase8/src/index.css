@@ -1,0 +1,136 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap');
+@import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  /* Brand colors */
+  --color-ink: #0b1220;
+  --color-navy: #0f172a;
+  --color-navy-2: #131b2e;
+  --color-cyan: #059669;
+  --color-cyan-light: #5eead4;
+  --color-teal: #0d9488;
+
+  --color-surface: #f7f9fb;
+  --color-surface-dim: #d8dadc;
+  --color-surface-bright: #f7f9fb;
+  --color-surface-lowest: #ffffff;
+  --color-surface-low: #f2f4f6;
+  --color-surface-container: #eceef0;
+  --color-surface-high: #e6e8ea;
+  --color-surface-highest: #e0e3e5;
+
+  --color-on-surface: #191c1e;
+  --color-on-surface-variant: #45464d;
+  --color-outline: #76777d;
+  --color-outline-variant: #e2e8f0;
+
+  --color-primary: #0f172a;
+  --color-on-primary: #ffffff;
+  --color-secondary: #0f766e;
+  --color-secondary-container: #5eead4;
+  --color-on-secondary-container: #115e59;
+
+  --color-success: #15803d;
+  --color-success-bg: #dcfce7;
+  --color-warning: #b45309;
+  --color-warning-bg: #fef3c7;
+  --color-error: #ba1a1a;
+  --color-error-bg: #ffdad6;
+  --color-info: #0f766e;
+  --color-info-bg: #f0fdfa;
+
+  --font-display: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-body: "Inter", ui-sans-serif, system-ui, sans-serif;
+
+  --radius-sm: 0.5rem;
+  --radius-md: 0.75rem;
+  --radius-lg: 1rem;
+  --radius-xl: 1.5rem;
+
+  --container-max: 1280px;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--color-surface);
+  color: var(--color-on-surface);
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4, .font-display {
+  font-family: var(--font-display);
+}
+
+::selection {
+  background-color: var(--color-cyan);
+  color: white;
+}
+
+.waveform-bar {
+  animation: pulse-wave 1.4s infinite ease-in-out alternate;
+  transform-origin: center;
+}
+@keyframes pulse-wave {
+  0% { transform: scaleY(0.25); }
+  100% { transform: scaleY(1); }
+}
+
+.float-card {
+  animation: float-card 6s ease-in-out infinite;
+}
+@keyframes float-card {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+.focus-ring {
+  outline: none;
+}
+.focus-ring:focus-visible {
+  outline: 2px solid var(--color-cyan);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; }
+}
+
+/* Dark mode — scoped to the application shell via .dark on a wrapping element.
+   Because Tailwind v4 utilities (bg-surface, text-on-surface, border-outline-variant, …)
+   compile to var(--color-*), re-declaring the same custom properties here re-themes
+   every existing utility class with no per-component dark: variants needed. */
+.dark {
+  --color-surface: #0a0f1a;
+  --color-surface-low: #10182b;
+  --color-surface-container: #172239;
+  --color-surface-high: #1f2c46;
+  --color-surface-highest: #263450;
+  --color-surface-lowest: #0d1424;
+  --color-surface-bright: #10182b;
+  --color-surface-dim: #060a12;
+
+  --color-on-surface: #eef2f6;
+  --color-on-surface-variant: #9aa7b8;
+  --color-outline: #4b5b74;
+  --color-outline-variant: #24314a;
+
+  --color-success: #4ade80;
+  --color-success-bg: #0e2f21;
+  --color-warning: #fbbf24;
+  --color-warning-bg: #3a2a0c;
+  --color-error: #f87171;
+  --color-error-bg: #3a1414;
+  --color-info: #2dd4bf;
+  --color-info-bg: #0d2e2a;
+
+  color-scheme: dark;
+}
+
+.dark body {
+  background-color: var(--color-surface);
+}
